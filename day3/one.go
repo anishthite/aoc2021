@@ -15,7 +15,6 @@ func main() {
     for scanner.Scan() {
         numlist = append(numlist, scanner.Text());
     }
-
     startswith := ""
     cont := true
     var num_sel int
@@ -29,13 +28,10 @@ func main() {
             startswith += "0"
         }
         num_sel = num_selected(numlist, startswith)
-        
         if num_sel == 1 || i == 11 {
-            fmt.Println(startswith)
             for _, num := range numlist {
                 if strings.HasPrefix(num, startswith) {
                     fmt.Println(num)
-
                 }
             }
             break
@@ -69,74 +65,3 @@ func pick_index(nums[] string, i int, prefix string) int{
     }
     return ones - zeros
 } 
-
-
-
-
-
-
-
-
-
-
-
-
-func give_nums(nums []string, i int, startswith string) (bool, string) {
-    s := 0
-    num_selected := 0 
-    for _, num := range nums {
-        if startswith == "" || strings.HasPrefix(num, startswith) {
-            num_selected += 1
-            if num[i] == '0' {
-                s -= 1
-            } else {
-                s += 1
-            }
-        }
-    }
-
-    if num_selected == 1  || i == 11{
-        for _, num := range nums {
-            if strings.HasPrefix(num, startswith) {
-                fmt.Println(num)
-            }
-        }
-    }
- 
-    if s >= 0 {
-        startswith += "1";
-    } else {
-        startswith += "0";
-    }
-    return num_selected > 1, startswith
-}
-
-func give_numsmin(nums []string, i int, startswith string) (bool, string) {
-    s := 0
-    num_selected := 0 
-    for _, num := range nums {
-        if startswith == "" || strings.HasPrefix(num, startswith) {
-            num_selected += 1
-            if num[i] == '0' {
-                s -= 1
-            } else {
-                s += 1
-            }
-        }
-    }
-
-    if num_selected == 1 {
-        for _, num := range nums {
-            if strings.HasPrefix(num, startswith) {
-                fmt.Println(num)
-            }
-        }
-    }
-
-    if s < 0 {
-        startswith += "1";
-    } else {
-        startswith += "0";
-    }
-    return num_selected > 1, startswith
-}
